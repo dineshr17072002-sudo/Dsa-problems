@@ -1,0 +1,44 @@
+package DynamicProgram;
+
+public class KnapSack2 {
+
+        public static void main(String[] args) {
+
+            int[] values = {2,3,4,1};
+            int[] weights = {3,4,5,6};
+            int capacity = 8;
+
+            int result = knapsack(values, weights, capacity);
+
+            System.out.println("Maximum Profit = " + result);
+        }
+//it will not divide the values
+
+        static int knapsack(int[] values, int[] weights, int capacity) {
+
+            int n = values.length;
+
+            int[][] dp = new int[n + 1][capacity + 1];
+
+            for (int i = 1; i <= n; i++) {
+
+                for (int j= 1; j <= capacity; j++) {
+
+                    if (weights[i - 1] <= j) {
+
+                        dp[i][j] = Math.max(
+                                values[i - 1] + dp[i - 1][j - weights[i - 1]],
+                                dp[i - 1][j]
+                        );
+
+                    } else {
+
+                        dp[i][j] = dp[i - 1][j];
+                    }
+                }
+            }
+
+            return dp[n][capacity];
+        }
+    }
+
