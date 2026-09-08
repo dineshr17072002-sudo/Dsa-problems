@@ -1,3 +1,5 @@
+package ZohoL1;
+
 public class ZohoQ6 {
 
     public static boolean zoho(String s) {
